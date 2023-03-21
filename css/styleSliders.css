@@ -4,6 +4,7 @@
 
 :root{
   --slider-bar-color: #00408B;
+  --slider-grip-color: white;
 }
 /* html5 slider appearence */
 /* Need separately firefox (-moz-*) and chrome (-webkit-*)*/
@@ -36,7 +37,7 @@ input[type=range]::-moz-range-thumb {
   height: 2.5vmin;
   width: 0.5vmin;
   border-radius: 0.5vmin;
-  background: #666699;
+  background: var(--slider-grip-color);
   cursor: pointer;
 }
 
@@ -61,7 +62,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 2.5vmin;
   width: 2.0vmin;
   border-radius: 0.5vmin;
-  background: #666699;
+  background: var(--slider-grip-color);
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -0.5vmin; /* 0.5 (trackWidth - thumbWidth) */
