@@ -2,14 +2,17 @@
 /* sliders */
 /*###########################################*/
 
+:root{
+  --slider-bar-color: #00408B;
+}
 /* html5 slider appearence */
-/* stupidly need separately firefox (-moz-*) and chrome (-webkit-*)*/
+/* Need separately firefox (-moz-*) and chrome (-webkit-*)*/
 /* http://danielstern.ca/range.css/#/ */
 
 input[type=range]{
   width: 12vw;
   height: 1.2vw;
-  background: #bbbbc5;
+  background: var(--slider-bar-color);
   -moz-appearance: none;
 
 }
@@ -21,7 +24,7 @@ input[type=range]::-moz-range-track{
   height: 2.0vmin;
   cursor: pointer;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #ddddf5;
+  background: var(--slider-bar-color);
   border-radius: 1px;
   border: 0.2px solid #010101;
 }
@@ -48,7 +51,7 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 1.5vmin;
   cursor: pointer;
   box-shadow: 3px 3px 3px #000000, 0px 0px 1px #0d0d0d;
-  background: #bbbbc5;;
+  background: var(--slider-bar-color);;
   border-radius: 1.3px;
   border: 0.1vmin solid #010101;
 }
@@ -64,7 +67,7 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -0.5vmin; /* 0.5 (trackWidth - thumbWidth) */
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ddddee;
+  background: var(--slider-bar-color);
 }
 
 
