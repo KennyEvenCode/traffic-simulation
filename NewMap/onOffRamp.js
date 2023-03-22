@@ -1,5 +1,4 @@
 const userCanDropObjects = true;
-//drawVehIDs=false; // override control_gui.js
 
 //#############################################################
 // adapt/override standard param settings from control_gui.js
