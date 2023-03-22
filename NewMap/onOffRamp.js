@@ -66,10 +66,11 @@ var critAspectRatio = 120 / 95; // from css file width/height of #contents
 
 var refSizePix = Math.min(canvas.height, canvas.width / critAspectRatio);
 var scale = refSizePix / refSizePhys;
-console.log("refSizePhys = " + refSizePhys);
-console.log("critAspectRatio = " + critAspectRatio);
-console.log("refSizePix = " + refSizePix);
-console.log("scale = " + scale);
+
+//console.log("refSizePhys = " + refSizePhys);
+//console.log("critAspectRatio = " + critAspectRatio);
+//console.log("refSizePix = " + refSizePix);
+//console.log("scale = " + scale);
 
 //##################################################################
 // Specification of physical road geometry and vehicle properties
@@ -143,13 +144,19 @@ function freeway_trajectory_X(u) {
   /* Verbose version of the above code 
   
   var dxPhysFromCenter; // left side (median), phys coordinates
+
   if (u < straightLen) {
     dxPhysFromCenter = straightLen - u;
-  } else if (u > straightLen + arcLen) {
+  } 
+  
+  else if (u > straightLen + arcLen) {
     dxPhysFromCenter = u - mainroadLen + straightLen;
-  } else {
+  } 
+  
+  else {
     dxPhysFromCenter = -arcRadius * Math.sin((u - straightLen) / arcRadius);
   }
+
   return center_xPhys + dxPhysFromCenter;
   
   */
@@ -164,6 +171,26 @@ function freeway_trajectory_Y(u) {
       ? -arcRadius
       : arcRadius * Math.cos((u - straightLen) / arcRadius);
   return center_yPhys + dyPhysFromCenter;
+
+  /* Verbose version of the above code 
+  
+  var dyPhysFromCenter; // left side (median), phys coordinates
+  
+  if (u < straightLen) {
+    dyPhysFromCenter = arcRadius;
+  } 
+  
+  else if (u > straightLen + arcLen) {
+    dyPhysFromCenter = -arcRadius;
+  } 
+  
+  else {
+    dyPhysFromCenter = arcRadius * Math.cos((u - straightLen) / arcRadius);
+  }
+  
+  return center_yPhys + dyPhysFromCenter;
+  
+  */
 }
 var traj = [freeway_trajectory_X, freeway_trajectory_Y];
 
