@@ -40,7 +40,7 @@ MOBIL_mandat_bias = 22;
 */
 
 var scenarioString = "onOffRamp";
-console.log("\n\nstart main: scenarioString=", scenarioString);
+//console.log("\n\nstart main: scenarioString=", scenarioString);
 
 var simDivWindow = document.getElementById("contents");
 var canvas = document.getElementById("canvas");
@@ -81,7 +81,7 @@ var scale = refSizePix / refSizePhys;
 
 var center_xRel = 0;
 var center_yRel = -0.44;
-var arcRadiusRel = 0.05;
+var arcRadiusRel = 0.04;
 var offLenRel = 0.9;
 
 var center_xPhys = center_xRel * refSizePhys; //[m]
