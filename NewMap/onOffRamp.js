@@ -40,7 +40,7 @@ MOBIL_mandat_bias = 22;
 */
 
 var scenarioString = "onOffRamp";
-//console.log("\n\nstart main: scenarioString=", scenarioString);
+console.log("\n\nstart main: scenarioString=", scenarioString);
 
 var simDivWindow = document.getElementById("contents");
 var canvas = document.getElementById("canvas");
