@@ -39,7 +39,7 @@ MOBIL_mandat_bias = 22;
 ######################################################*
 */
 
-var scenarioString = "RoadWorks";
+var scenarioString = "onOffRamp";
 console.log("\n\nstart main: scenarioString=", scenarioString);
 
 var simDivWindow = document.getElementById("contents");
