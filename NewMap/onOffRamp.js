@@ -66,6 +66,10 @@ var critAspectRatio = 120 / 95; // from css file width/height of #contents
 
 var refSizePix = Math.min(canvas.height, canvas.width / critAspectRatio);
 var scale = refSizePix / refSizePhys;
+console.log("refSizePhys = " + refSizePhys);
+console.log("critAspectRatio = " + critAspectRatio);
+console.log("refSizePix = " + refSizePix);
+console.log("scale = " + scale);
 
 //##################################################################
 // Specification of physical road geometry and vehicle properties
@@ -75,8 +79,7 @@ var scale = refSizePix / refSizePhys;
 // all relative "Rel" settings with respect to refSizePhys, not refSizePix!
 
 var center_xRel = 0;
-var center_yRel = isSmartphone ? -0.44 : -0.49;
-var center_yRel = -0.49; //TODO add if statement based on screen size
+var center_yRel = -0.44;
 var arcRadiusRel = 0.05;
 var offLenRel = 0.9;
 
@@ -116,7 +119,7 @@ function updateDimensions() {
 // the following remains constant
 // => road becomes more compact for smaller screens
 
-var laneWidth = 7; // remains constant => road becomes more compact for smaller
+var laneWidth = 6; // remains constant => road becomes more compact for smaller
 // var laneWidthRamp=5; // main lanewidth used
 var nLanes_main = 2;
 var nLanes_rmp = 1;
@@ -126,8 +129,9 @@ var car_width = 5; // car width in m
 var truck_length = 15; // trucks
 var truck_width = 7;
 
-function traj_x(u) {
+function freeway_trajectory_X(u) {
   // physical coordinates
+
   var dxPhysFromCenter = // left side (median), phys coordinates
     u < straightLen
       ? straightLen - u
@@ -135,9 +139,23 @@ function traj_x(u) {
       ? u - mainroadLen + straightLen
       : -arcRadius * Math.sin((u - straightLen) / arcRadius);
   return center_xPhys + dxPhysFromCenter;
+
+  /* Verbose version of the above code 
+  
+  var dxPhysFromCenter; // left side (median), phys coordinates
+  if (u < straightLen) {
+    dxPhysFromCenter = straightLen - u;
+  } else if (u > straightLen + arcLen) {
+    dxPhysFromCenter = u - mainroadLen + straightLen;
+  } else {
+    dxPhysFromCenter = -arcRadius * Math.sin((u - straightLen) / arcRadius);
+  }
+  return center_xPhys + dxPhysFromCenter;
+  
+  */
 }
 
-function traj_y(u) {
+function freeway_trajectory_Y(u) {
   // physical coordinates
   var dyPhysFromCenter =
     u < straightLen
@@ -147,11 +165,11 @@ function traj_y(u) {
       : arcRadius * Math.cos((u - straightLen) / arcRadius);
   return center_yPhys + dyPhysFromCenter;
 }
-var traj = [traj_x, traj_y];
+var traj = [freeway_trajectory_X, freeway_trajectory_Y];
 
 function trajRamp_x(u) {
   // physical coordinates
-  var xDivergeBegin = traj_x(mainRampOffset);
+  var xDivergeBegin = freeway_trajectory_X(mainRampOffset);
   return u < divergeLen
     ? xDivergeBegin + u
     : xDivergeBegin +
@@ -162,7 +180,7 @@ function trajRamp_x(u) {
 function trajRamp_y(u) {
   // physical coordinates
   var yDivergeBegin =
-    traj_y(mainRampOffset) -
+    freeway_trajectory_Y(mainRampOffset) -
     0.5 * laneWidth * (nLanes_main + nLanes_rmp) -
     0.02 * laneWidth;
   return u < taperLen
@@ -188,7 +206,7 @@ var mainroad = new road(
   mainroadLen,
   laneWidth,
   nLanes_main,
-  [traj_x, traj_y],
+  [freeway_trajectory_X, freeway_trajectory_Y],
   density,
   speedInit,
   fracTruck,
