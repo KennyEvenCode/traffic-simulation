@@ -74,7 +74,7 @@ var scale = refSizePix / refSizePhys;
 
 // all relative "Rel" settings with respect to refSizePhys, not refSizePix!
 
-var center_xRel = 0.43;
+var center_xRel = 0;
 var center_yRel = -0.53;
 var arcRadiusRel = 0.35;
 var offLenRel = 0.9;
