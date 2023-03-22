@@ -76,7 +76,7 @@ var scale = refSizePix / refSizePhys;
 
 var center_xRel = 0;
 var center_yRel = -0.44;
-var arcRadiusRel = 0.35;
+var arcRadiusRel = 0.05;
 var offLenRel = 0.9;
 
 var center_xPhys = center_xRel * refSizePhys; //[m]
