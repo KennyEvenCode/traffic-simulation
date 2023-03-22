@@ -75,7 +75,8 @@ var scale = refSizePix / refSizePhys;
 // all relative "Rel" settings with respect to refSizePhys, not refSizePix!
 
 var center_xRel = 0;
-var center_yRel = -0.44;
+var center_yRel = isSmartphone ? -0.44 : -0.49;
+var center_yRel = -0.49; //TODO add if statement based on screen size
 var arcRadiusRel = 0.05;
 var offLenRel = 0.9;
 
