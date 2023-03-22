@@ -74,9 +74,9 @@ var scale = refSizePix / refSizePhys;
 
 // all relative "Rel" settings with respect to refSizePhys, not refSizePix!
 
-var center_xRel = 0;
-var center_yRel = -0.44;
-var arcRadiusRel = 0.05;
+var center_xRel = 0.43;
+var center_yRel = -0.53;
+var arcRadiusRel = 0.35;
 var offLenRel = 0.9;
 
 var center_xPhys = center_xRel * refSizePhys; //[m]
@@ -117,7 +117,7 @@ function updateDimensions() {
 
 var laneWidth = 7; // remains constant => road becomes more compact for smaller
 // var laneWidthRamp=5; // main lanewidth used
-var nLanes_main = 2;
+var nLanes_main = 3;
 var nLanes_rmp = 1;
 
 var car_length = 7; // car length in m
@@ -147,6 +147,31 @@ function traj_y(u) {
   return center_yPhys + dyPhysFromCenter;
 }
 var traj = [traj_x, traj_y];
+
+function trajRamp_x(u) {
+  // physical coordinates
+  var xDivergeBegin = traj_x(mainRampOffset);
+  return u < divergeLen
+    ? xDivergeBegin + u
+    : xDivergeBegin +
+        divergeLen +
+        offRadius * Math.sin((u - divergeLen) / offRadius);
+}
+
+function trajRamp_y(u) {
+  // physical coordinates
+  var yDivergeBegin =
+    traj_y(mainRampOffset) -
+    0.5 * laneWidth * (nLanes_main + nLanes_rmp) -
+    0.02 * laneWidth;
+  return u < taperLen
+    ? yDivergeBegin + laneWidth - (laneWidth * u) / taperLen
+    : u < divergeLen
+    ? yDivergeBegin
+    : yDivergeBegin - offRadius * (1 - Math.cos((u - divergeLen) / offRadius));
+}
+
+var trajRamp = [trajRamp_x, trajRamp_y];
 
 //##################################################################
 // Specification of logical road network
