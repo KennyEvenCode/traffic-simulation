@@ -40,7 +40,7 @@ MOBIL_mandat_bias = 22;
 */
 
 var scenarioString = "onOffRamp";
-console.log("\n\nstart main: scenarioString=", scenarioString);
+//console.log("\n\nstart main: scenarioString=", scenarioString);
 
 var simDivWindow = document.getElementById("contents");
 var canvas = document.getElementById("canvas");
@@ -49,9 +49,9 @@ canvas.width = simDivWindow.clientWidth;
 canvas.height = simDivWindow.clientHeight;
 var aspectRatio = canvas.width / canvas.height;
 
-console.log("before addTouchListeners()");
+//console.log("before addTouchListeners()");
 addTouchListeners();
-console.log("after addTouchListeners()");
+//console.log("after addTouchListeners()");
 
 //##################################################################
 // overall scaling (critAspectRatio should be consistent with
@@ -110,7 +110,7 @@ function updateDimensions() {
   mainRampOffset = mainroadLen - straightLen;
   taperLen = 0.2 * offLen;
   offRadius = 3 * arcRadius;
-  console.log(" mainroadLen=", mainroadLen);
+  //console.log(" mainroadLen=", mainroadLen);
 }
 
 // the following remains constant
@@ -344,7 +344,7 @@ function updateSim() {
 
   // debug output
 
-  if (false) {
+  /*if (false) {
     console.log(
       "mainroadLen=",
       formd(mainroadLen),
@@ -367,7 +367,7 @@ function updateSim() {
       formd(mainRampOffset + divergeLen - u_antic),
       ")"
     );
-  }
+  }*/
 } //updateSim
 
 //##################################################
@@ -380,7 +380,7 @@ function drawSim() {
 
   var relTextsize_vmin = isSmartphone ? 0.03 : 0.02; //xxx
   var textsize = relTextsize_vmin * Math.min(canvas.width, canvas.height);
-
+  /*
   if (false) {
     console.log(
       " new total inner window dimension: ",
@@ -394,7 +394,7 @@ function drawSim() {
       canvas.height
     );
   }
-
+*/
   if (
     canvas.width != simDivWindow.clientWidth ||
     canvas.height != simDivWindow.clientHeight
@@ -516,6 +516,6 @@ function main_loop() {
 //  ("myRun=setInterval(main_loop, 1000/fps);")
 //############################################
 
-console.log("first main execution");
+//console.log("first main execution");
 showInfo();
 var myRun = setInterval(main_loop, 1000 / fps);
