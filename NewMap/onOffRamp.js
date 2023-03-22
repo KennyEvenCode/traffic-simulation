@@ -117,7 +117,7 @@ function updateDimensions() {
 
 var laneWidth = 7; // remains constant => road becomes more compact for smaller
 // var laneWidthRamp=5; // main lanewidth used
-var nLanes_main = 3;
+var nLanes_main = 2;
 var nLanes_rmp = 1;
 
 var car_length = 7; // car length in m
