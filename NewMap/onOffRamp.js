@@ -125,10 +125,10 @@ var laneWidth = 6; // remains constant => road becomes more compact for smaller
 var nLanes_main = 2;
 var nLanes_rmp = 1;
 
-var car_length = 7; // car length in m
-var car_width = 5; // car width in m
-var truck_length = 15; // trucks
-var truck_width = 7;
+var car_length = 10; // car length in m
+var car_width = laneWidth - 2; // car width in m
+var truck_length = 20; // trucks
+var truck_width = laneWidth;
 
 function freeway_trajectory_X(u) {
   // physical coordinates
